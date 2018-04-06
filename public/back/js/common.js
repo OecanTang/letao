@@ -23,3 +23,62 @@ $(document).ajaxStop(function() {
     NProgress.done();
   }, 500);
 })
+
+$(function() {
+//  1-二级分类切换功能
+  $(".category").on("click",function() {
+    $(this).next().stop().slideToggle();
+  })
+
+//  2-顶部菜单栏切换显示功能
+  $(".icon_menu").on("click",function() {
+    //console.log("haha");
+    $(".lt_aside").toggleClass("hidemenu");
+    $(".lt_main").toggleClass("hidemenu");
+    $(".lt_topbar").toggleClass("hidemenu");
+  })
+
+//  3-点击退出图标，显示模态框
+  $(".icon_logout").on("click",function() {
+    //console.log("haha");
+    $("#lououtModal").modal("show");
+  })
+
+//  4-在外面给logoutBtn注册点击事件
+  $("#logoutBtn").on("click",function() {
+    //console.log("haha");
+
+  //  访问退出借口，进行退出
+    $.ajax({
+      url: "/employee/employeeLogout",
+      type: "GET",
+      dataType: "json",
+      success: function(info) {
+
+        if (info.success) {
+          location.href= "index.html";
+        }
+      }
+    })
+  })
+
+
+
+
+
+
+
+
+
+
+
+})
+
+
+
+
+
+
+
+
+
