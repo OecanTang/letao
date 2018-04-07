@@ -1,0 +1,8 @@
+INSERT INTO `user` VALUES ("",'jepson','lueSGJZetyySpUndWjMBEg==','15711112222',0);
+INSERT INTO `user` VALUES ("",'peter','lueSGJZetyySpUndWjMBEg==','15711112222',0);
+INSERT INTO `user` VALUES ("",'jepson','lueSGJZetyySpUndWjMBEg==','15711112222',0);
+INSERT INTO `user` VALUES ("",'hucc','lueSGJZetyySpUndWjMBEg==','15711112222',1);
+INSERT INTO `user` VALUES ("",'jepson','lueSGJZetyySpUndWjMBEg==','15711112222',1);
+INSERT INTO `user` VALUES ("",'hulaoc','lueSGJZetyySpUndWjMBEg==','15711112222',0);
+INSERT INTO `user` VALUES ("",'pangccc','lueSGJZetyySpUndWjMBEg==','15711112222',0);
+INSERT INTO `user` VALUES ("",'jepson','lueSGJZetyySpUndWjMBEg==','15711112222',0);
