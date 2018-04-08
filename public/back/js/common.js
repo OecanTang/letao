@@ -24,19 +24,6 @@ $(document).ajaxStop(function() {
   }, 500);
 })
 
-//进行登录拦截
-if (location.href.indexOf("login.html") === -1 ) {
-  $.ajax({
-    type: "GET",
-    url: "/employee/checkRootLogin",
-    success: function(info) {
-      if ( info.success === 400 ) {
-        location.href = "login.html";
-      }
-    }
-  })
-}
-
 $(function() {
 //  1-二级分类切换功能
   $(".category").on("click",function() {
@@ -67,16 +54,30 @@ $(function() {
       type: "GET",
       dataType: "json",
       success: function(info) {
-
+        console.log(info);
         if (info.success) {
-          location.href= "index.html";
+          location.href= "login.html";
         }
       }
     })
   })
 
-// 5-登录拦截功能
+// 5-登录校验功能
+  if (location.href.indexOf("login.html") === -1 ) {
+    $.ajax({
+      type: "GET",
+      url: "/employee/checkRootLogin",
+      success: function(info) {
+        console.log(info);
+        if ( info.success ) {
 
+        }
+        if (info.error === 400 ) {
+          location.href = "login.html";
+        }
+      }
+    })
+  }
 
 
 
