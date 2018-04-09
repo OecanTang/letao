@@ -1,0 +1,54 @@
+.product_left {
+  width: 90px;
+  float: left;
+  position: relative;
+  height: 100%;
+}
+.product_left a {
+  display: block;
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  background-color: #E3E4E5;
+  color: #666666;
+  text-align: center;
+  border-bottom: 1px solid #CCCCCC;
+  border-right: 1px solid #CCCCCC;
+}
+.product_left a.current {
+  background-color: #fff;
+  border-right: none;
+}
+.product_right {
+  position: relative;
+  overflow: hidden;
+  background-color: #fff;
+  height: 100%;
+  text-align: center;
+}
+
+.product_right li {
+  float: left;
+  width: 33.33%;
+}
+.product_right li a {
+  display: block;
+  width: 100%;
+}
+.product_right li img {
+  width: 70px;
+  height: 50px;
+  margin: 0 auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+
