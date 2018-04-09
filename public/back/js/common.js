@@ -68,7 +68,7 @@ $(function() {
       type: "GET",
       url: "/employee/checkRootLogin",
       success: function(info) {
-        console.log(info);
+        //console.log(info);
         if ( info.success ) {
 
         }

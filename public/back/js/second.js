@@ -28,7 +28,7 @@ $(function() {
           currentPage: info.page,
           //总页数
           totalPages: Math.ceil( info.total/info.size ),
-          //  但页面被点击时触发
+          //  当页面被点击时触发
           onPageClicked: function(a, b, c, page) {
             currentPage = page;
             render();
@@ -37,7 +37,6 @@ $(function() {
       }
     })
   }
-
 
 //  2-给addcategory注册点击事件
   $("#addcategory").on("click",function() {

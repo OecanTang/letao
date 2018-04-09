@@ -25,7 +25,7 @@
   <div class="nav">
     <ul>
       <li>
-        <a href="user.html" class="current">
+        <a href="user.html">
           <i class="glyphicon glyphicon-user"></i>
           <span>用户管理</span>
         </a>
@@ -35,13 +35,13 @@
           <i class="glyphicon glyphicon-list"></i>
           <span>分类用户</span>
         </a>
-        <div class="child" style="display: none">
+        <div class="child">
           <a href="first.html">一级分类</a>
           <a href="second.html">二级分类</a>
         </div>
       </li>
       <li>
-        <a href="product.html">
+        <a href="product.html" class="current">
           <i class="glyphicon glyphicon-tags"></i>
           <span>商品管理</span>
         </a>
@@ -62,22 +62,59 @@
       <i class="glyphicon glyphicon-log-out"></i>
     </a>
   </div>
+
   <!--下面的内容-->
   <div class="container-fluid">
     <!--路径导航-->
     <ol class="breadcrumb">
       <li><a href="#">管理系统</a></li>
-      <li class="active">首页</li>
+      <li class="active">商品管理</li>
     </ol>
 
-  </div>
+    <!--lt_content部分-->
+    <div class="lt_content">
+      <button class="btn btn-default mb_20" id="addProduct">添加商品</button>
+      <table class="table table-bordered table-hover" id="user_table">
+        <thead>
+          <tr>
+            <th width="10%">序号</th>
+            <th width="25%">商品名称</th>
+            <th width="25%">商品描述</th>
+            <th width="10%">商品库存</th>
+            <th width="10%">商品尺寸</th>
+            <th width="10%">商品状态</th>
+            <th width="10%">操作</th>
+          </tr>
+        </thead>
+        <tbody>
+        <!--刨个坑-->
+          <!--<tr>-->
+            <!--<td>1</td>-->
+            <!--<td>【莹恋】MIZUNO美津浓V1GA159002乒乓球鞋男鞋女鞋室内综合训练鞋</td>-->
+            <!--<td>描述123123</td>-->
+            <!--<td>44</td>-->
+            <!--<td>35-56</td>-->
+            <!--<td>已上架</td>-->
+            <!--<td>-->
+              <!--<button class="btn btn-danger">下架</button>-->
+              <!--&lt;!&ndash;<button class="btn btn-success">下架</button>&ndash;&gt;-->
+            <!--</td>-->
+          <!--</tr>-->
+        </tbody>
+      </table>
+      <!--分页部分-->
+      <div class="pull-right">
+        <ul id="paginator"></ul>
+      </div>
+    </div>
 
+  </div>
 
 </div>
 <!--右侧主体部分结束-->
 
 
-<!--模态框开始-->
+<!--退出模态框开始-->
 <div class="modal fade" id="lououtModal">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
@@ -92,16 +129,134 @@
         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
         <button type="button" class="btn btn-primary" id="logoutBtn">退出</button>
       </div>
+    </div>
+  </div>
+</div>
+<!--退出模态框结束-->
+
+<!--添加商品模态框开始-->
+<div class="modal fade" id="addmodal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+        <h4 class="modal-title">添加商品</h4>
+      </div>
+      <div class="modal-body">
+        <form id="form">
+          <div class="form-group">
+            <div class="dropdown">
+              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                <span id="dropdownText">请选择二级分类</span>
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" >
+                <!--刨个坑-->
+                <!--<li><a href="#">耐克</a></li>-->
+                <!--<li><a href="#">阿迪</a></li>-->
+                <!--<li><a href="#">安德玛</a></li>-->
+                <!--<li><a href="#">锐步</a></li>-->
+              </ul>
+            </div>
+            <!-- 7.brandId-->
+            <input type="hidden" name="brandId">
+            <!-- 8.statu-->
+            <input type="hidden" name="statu" value="1">
+          </div>
+
+          <!-- 1.商品名称-->
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="请输入商品名称" name="proName">
+          </div>
+
+          <!-- 2.商品描述-->
+          <div class="form-group">
+            <textarea class="form-control" rows="3" name="proDesc" placeholder="请输入商品描述"></textarea>
+          </div>
+
+          <!-- 3.商品库存-->
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="请输入商品库存" name="num">
+          </div>
+
+          <!-- 4.商品尺码-->
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="请输入商品尺码" name="size">
+          </div>
+
+          <!-- 5.商品原价-->
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="请输入商品原价" name="oldPrice">
+          </div>
+
+          <!-- 6.商品现价-->
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="请输入商品现价" name="price">
+          </div>
+
+          <div class="form-group">
+            <label class="btn btn-default" for="fileupload">上传图片</label>
+            <input type="file" name="pic1" data-url="/product/addProductPic" id="fileupload" style="display: none" multiple >
+            <!-- 1.name用于让后台获取图片地址，不能乱写
+                 2.data-url指定借口地址
+                 3.multiple多文件上传
+            -->
+          </div>
+          <div class="form-group" id="imgBox">
+            <input type="hidden" name="picStatus">
+          </div>
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="submit" class="btn btn-primary" form="form">添加</button>
+      </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-<!--模态框结束-->
+<!--添加商品模态框结束-->
 
+<!--productTmp模板-->
+<script type="text/template" id="productTmp">
+  {{ each rows v i }}
+    <tr>
+      <td>{{ (page-1)*size + i+1 }}</td>
+      <td>{{ v.proName }}</td>
+      <td>{{ v.proDesc }}</td>
+      <td>{{ v.num }}</td>
+      <td>{{ v.size }}</td>
+      <td>{{ v.statu == 1 ? "已上架" : "已下架"}}</td>
+      <td>
+        {{ if v.statu == 1 }}
+          <button class="btn btn-danger">下架</button>
+        {{ else }}
+          <button class="btn btn-success">上架</button>
+        {{ /if }}
+      </td>
+    </tr>
+  {{ /each }}
+</script>
+
+<!--dropdownTmp模板-->
+<script type="text/template" id="dropdownTmp">
+  {{ each rows v i }}
+    <li><a href="#" data-id="{{ v.id }}">{{ v.brandName }}</a></li>
+  {{ /each }}
+</script>
 
 <script src="lib/jquery/jquery.min.js"></script>
 <script src="lib/bootstrap/js/bootstrap.min.js"></script>
 <script src="lib/bootstrap-validator/js/bootstrapValidator.min.js"></script>
 <script src="lib/nprogress/nprogress.js"></script>
+<script src="lib/artTemplate/template-web.js"></script>
+<script src="lib/bootstrap-paginator/bootstrap-paginator.min.js"></script>
+<!-- 引入fileupload -->
+<script src="lib/jquery-fileupload/jquery.ui.widget.js"></script>
+<script src="lib/jquery-fileupload/jquery.fileupload.js"></script>
+
 <script src="js/common.js"></script>
+<script src="js/product.js"></script>
+
 </body>
 </html>
